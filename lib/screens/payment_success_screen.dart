@@ -141,10 +141,8 @@ class PaymentSuccessScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CircleAvatar(
-                      radius: 11,
-                      backgroundColor: const Color(0xFF6B3FA0),
-                      child: const Icon(Icons.person, color: Colors.white, size: 13),
+                    ClipOval(
+                      child: Image.asset('assets/Profile.png', width: 22, height: 22, fit: BoxFit.cover),
                     ),
                     const SizedBox(width: 6),
                     const Text(

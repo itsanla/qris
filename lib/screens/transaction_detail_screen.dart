@@ -67,10 +67,8 @@ class TransactionDetailScreen extends StatelessWidget {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            CircleAvatar(
-                              radius: 12,
-                              backgroundColor: const Color(0xFF6B3FA0),
-                              child: const Icon(Icons.person, color: Colors.white, size: 14),
+                            ClipOval(
+                              child: Image.asset('assets/Profile.png', width: 24, height: 24, fit: BoxFit.cover),
                             ),
                             const SizedBox(width: 6),
                             const Text(

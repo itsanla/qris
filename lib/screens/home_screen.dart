@@ -49,14 +49,12 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 22,
-            backgroundColor: const Color(0xFF6B3FA0),
-            child: ClipOval(
-              child: Container(
-                color: const Color(0xFF5C3580),
-                child: const Icon(Icons.person, color: Colors.white, size: 28),
-              ),
+          ClipOval(
+            child: Image.asset(
+              'assets/Profile.png',
+              width: 44,
+              height: 44,
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(width: 10),
@@ -250,12 +248,16 @@ class HomeScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-      child: GridView.count(
-        crossAxisCount: 4,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        childAspectRatio: 0.9,
-        children: items.map((item) => _buildMenuItem(item)).toList(),
+      child: Column(
+        children: [
+          Row(
+            children: items.sublist(0, 4).map((item) => Expanded(child: _buildMenuItem(item))).toList(),
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: items.sublist(4, 8).map((item) => Expanded(child: _buildMenuItem(item))).toList(),
+          ),
+        ],
       ),
     );
   }

@@ -78,10 +78,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(height: 10),
           Row(
             children: [
-              CircleAvatar(
-                radius: 28,
-                backgroundColor: const Color(0xFF6B3FA0),
-                child: const Icon(Icons.person, color: Colors.white, size: 34),
+              ClipOval(
+                child: Image.asset('assets/Profile.png', width: 56, height: 56, fit: BoxFit.cover),
               ),
               const SizedBox(width: 14),
               Column(

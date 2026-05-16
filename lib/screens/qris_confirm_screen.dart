@@ -93,10 +93,8 @@ class _QrisConfirmScreenState extends State<QrisConfirmScreen> {
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 18,
-                backgroundColor: const Color(0xFF6B3FA0),
-                child: const Icon(Icons.person, color: Colors.white, size: 20),
+              ClipOval(
+                child: Image.asset('assets/Profile.png', width: 36, height: 36, fit: BoxFit.cover),
               ),
               const SizedBox(width: 10),
               Expanded(

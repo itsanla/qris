@@ -85,27 +85,32 @@ class _TransferScreenState extends State<TransferScreen> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 12),
-            child: GridView.count(
-              crossAxisCount: 4,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              childAspectRatio: 0.85,
+            child: Column(
               children: [
-                _buildTransferIcon(_SeaBankIcon(), 'SeaBank'),
-                _buildTransferIcon(const Icon(Icons.account_balance, color: Colors.white, size: 26), 'Bank Lain'),
-                _buildTransferIcon(
-                  Container(
-                    decoration: BoxDecoration(border: Border.all(color: Colors.white, width: 1.5), borderRadius: BorderRadius.circular(4)),
-                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                    child: const Text('VA', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),
-                  ),
-                  'Virtual\nAccount',
+                Row(
+                  children: [
+                    Expanded(child: _buildTransferIcon(_SeaBankIcon(), 'SeaBank')),
+                    Expanded(child: _buildTransferIcon(const Icon(Icons.account_balance, color: Colors.white, size: 22), 'Bank Lain')),
+                    Expanded(child: _buildTransferIcon(
+                      Container(
+                        decoration: BoxDecoration(border: Border.all(color: Colors.white, width: 1.5), borderRadius: BorderRadius.circular(4)),
+                        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                        child: const Text('VA', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 11)),
+                      ),
+                      'Virtual\nAccount',
+                    )),
+                    Expanded(child: _buildTransferIcon(const Icon(Icons.account_balance_wallet, color: Colors.white, size: 22), 'Top Up\nE-Wallet')),
+                  ],
                 ),
-                _buildTransferIcon(const Icon(Icons.account_balance_wallet, color: Colors.white, size: 26), 'Top Up\nE-Wallet'),
-                _buildTransferIcon(const Icon(Icons.receipt_long, color: Colors.white, size: 26), 'Top Up &\nTagihan'),
-                _buildTransferIcon(const Icon(Icons.groups, color: Colors.white, size: 26), 'Transfer\nGrup'),
-                _buildTransferIcon(const Icon(Icons.schedule, color: Colors.white, size: 26), 'Transfer\nTerjadwal'),
-                _buildTransferIcon(const Icon(Icons.qr_code, color: Colors.white, size: 26), 'Tampilkan\nQR Bayar'),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Expanded(child: _buildTransferIcon(const Icon(Icons.receipt_long, color: Colors.white, size: 22), 'Top Up &\nTagihan')),
+                    Expanded(child: _buildTransferIcon(const Icon(Icons.groups, color: Colors.white, size: 22), 'Transfer\nGrup')),
+                    Expanded(child: _buildTransferIcon(const Icon(Icons.schedule, color: Colors.white, size: 22), 'Transfer\nTerjadwal')),
+                    Expanded(child: _buildTransferIcon(const Icon(Icons.qr_code, color: Colors.white, size: 22), 'Tampilkan\nQR Bayar')),
+                  ],
+                ),
               ],
             ),
           ),
@@ -119,8 +124,8 @@ class _TransferScreenState extends State<TransferScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: 52,
-          height: 52,
+          width: 44,
+          height: 44,
           decoration: const BoxDecoration(color: kOrange, shape: BoxShape.circle),
           child: Center(child: iconWidget),
         ),
