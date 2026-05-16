@@ -270,7 +270,7 @@ class HomeScreen extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              border: Border.all(color: kOrange.withOpacity(0.3), width: 1.5),
+              border: Border.all(color: kOrange.withValues(alpha: 0.3), width: 1.5),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(item.icon, color: kOrange, size: 24),
@@ -303,7 +303,7 @@ class HomeScreen extends StatelessWidget {
                   width: 28,
                   height: 28,
                   decoration: BoxDecoration(
-                    color: kOrange.withOpacity(0.15),
+                    color: kOrange.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: const Icon(Icons.timer_outlined, color: kOrange, size: 18),
@@ -462,7 +462,7 @@ class HomeScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        border: Border.all(color: kBlue.withOpacity(0.5), width: 1),
+        border: Border.all(color: kBlue.withValues(alpha: 0.5), width: 1),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(label, style: const TextStyle(color: kBlue, fontSize: 11, fontWeight: FontWeight.w500)),

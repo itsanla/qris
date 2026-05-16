@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'screens/home_screen.dart';
 import 'screens/transfer_screen.dart';
 import 'screens/profile_screen.dart';
+import 'screens/qris_scanner_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,7 +71,10 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: _SeaBankBottomNav(
         currentIndex: _currentIndex,
         onTap: (i) {
-          if (i == 2) return;
+          if (i == 2) {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => const QrisScannerScreen()));
+            return;
+          }
           setState(() => _currentIndex = i);
         },
       ),
