@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import '../state/transaction_store.dart';
 import 'qris_scanner_screen.dart';
-import 'payment_success_screen.dart';
+import 'payment_loading_screen.dart';
 
 class QrisConfirmScreen extends StatefulWidget {
   final QrisData data;
@@ -253,12 +253,10 @@ class _QrisConfirmScreenState extends State<QrisConfirmScreen> {
         merchantName: widget.data.merchantName,
         merchantCity: widget.data.city,
         onSuccess: () {
-          _addTransaction();
+          final tx = _buildTransaction();
+          addTransaction(tx);
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (_) => PaymentSuccessScreen(
-              merchantName: widget.data.merchantName,
-              amount: _amountFormatted,
-            )),
+            MaterialPageRoute(builder: (_) => PaymentLoadingScreen(transaction: tx)),
             (route) => route.isFirst,
           );
         },
@@ -266,7 +264,7 @@ class _QrisConfirmScreenState extends State<QrisConfirmScreen> {
     );
   }
 
-  void _addTransaction() {
+  TransactionItem _buildTransaction() {
     final now = DateTime.now();
     final months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'];
     final dateStr = '${now.day} ${months[now.month - 1]} ${now.year}, ${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}';
@@ -274,6 +272,9 @@ class _QrisConfirmScreenState extends State<QrisConfirmScreen> {
     final txNum = '2026${now.month.toString().padLeft(2, '0')}${now.day.toString().padLeft(2, '0')}${List.generate(16, (_) => rand.nextInt(10)).join()}';
     final refNum = '010000${List.generate(6, (_) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'[rand.nextInt(36)]).join()}';
     final termId = List.generate(16, (_) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'[rand.nextInt(62)]).join();
+    final acquirerNames = ['GoPay', 'OVO', 'DANA', 'LinkAja'];
+    final acquirerName = acquirerNames[rand.nextInt(acquirerNames.length)];
+    final acqAccount = '${9000 + rand.nextInt(999)}-${rand.nextInt(9999).toString().padLeft(4, '0')}-${rand.nextInt(9999).toString().padLeft(4, '0')}-${rand.nextInt(9999).toString().padLeft(4, '0')}-${rand.nextInt(999).toString().padLeft(3, '0')}';
 
     String amtRaw = _amount.toInt().toString();
     final buf = StringBuffer();
@@ -282,7 +283,7 @@ class _QrisConfirmScreenState extends State<QrisConfirmScreen> {
       buf.write(amtRaw[i]);
     }
 
-    addTransaction(TransactionItem(
+    return TransactionItem(
       id: txNum,
       iconType: TxIconType.store,
       name: widget.data.merchantName,
@@ -293,11 +294,12 @@ class _QrisConfirmScreenState extends State<QrisConfirmScreen> {
       amountValue: buf.toString(),
       toName: widget.data.merchantName,
       toLocation: widget.data.city,
-      acquirer: 'SeaBank',
+      acquirer: acquirerName,
+      acquirerAccount: acqAccount,
       txNumber: txNum,
       refNumber: refNum,
       terminalId: termId,
-    ));
+    );
   }
 }
 

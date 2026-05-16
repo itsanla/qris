@@ -6,7 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:qris/main.dart';
+import 'package:seabank/main.dart';
 
 void main() {
   testWidgets('SeaBank app smoke test', (WidgetTester tester) async {

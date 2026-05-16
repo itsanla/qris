@@ -14,6 +14,7 @@ class TransactionItem {
   final String? toName;
   final String? toLocation;
   final String? acquirer;
+  final String? acquirerAccount;
   final String? txNumber;
   final String? refNumber;
   final String? terminalId;
@@ -30,6 +31,7 @@ class TransactionItem {
     this.toName,
     this.toLocation,
     this.acquirer,
+    this.acquirerAccount,
     this.txNumber,
     this.refNumber,
     this.terminalId,
@@ -48,7 +50,8 @@ final _defaultTransactions = <TransactionItem>[
     amountValue: '5.000',
     toName: 'MyTelkomsel Apps',
     toLocation: 'JAKARTA SELATAN',
-    acquirer: 'OVO',
+    acquirer: 'GoPay',
+    acquirerAccount: '9360-0914-3251-4113-632',
     txNumber: '20260515170034567891234567',
     refNumber: '010000AB1C2D',
     terminalId: 'FYFKb6DXOqVbnJX6',
@@ -64,7 +67,8 @@ final _defaultTransactions = <TransactionItem>[
     amountValue: '30.000',
     toName: 'MyTelkomsel Apps',
     toLocation: 'JAKARTA SELATAN',
-    acquirer: 'OVO',
+    acquirer: 'GoPay',
+    acquirerAccount: '9360-0914-3251-4113-632',
     txNumber: '20260515165934567891234567',
     refNumber: '010000CD3E4F',
     terminalId: 'FYFKb6DXOqVbnJX6',
@@ -80,7 +84,8 @@ final _defaultTransactions = <TransactionItem>[
     amountValue: '150.000',
     toName: 'MyTelkomsel Apps',
     toLocation: 'JAKARTA SELATAN',
-    acquirer: 'OVO',
+    acquirer: 'GoPay',
+    acquirerAccount: '9360-0914-3251-4113-632',
     txNumber: '20260515165734567891234567',
     refNumber: '010000EF5G6H',
     terminalId: 'FYFKb6DXOqVbnJX6',
@@ -145,6 +150,7 @@ final _defaultTransactions = <TransactionItem>[
     toName: 'Ayam Geprek Ayu Kuline...',
     toLocation: 'Padang',
     acquirer: 'OVO',
+    acquirerAccount: '9360-0914-3251-1234-567',
     txNumber: '20260513435058977541299962',
     refNumber: '010000FY4F4L',
     terminalId: 'FYFKb6DXOqVbnJX6',
