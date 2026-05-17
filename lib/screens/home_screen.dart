@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
+import '../state/balance_store.dart';
 import 'history_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -151,13 +152,16 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Rp 5.856.319',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
+                ValueListenableBuilder<int>(
+                  valueListenable: tabunganNotifier,
+                  builder: (context, tabungan, child) => Text(
+                    formatRp(tabungan + depositoBalance),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -180,9 +184,12 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 4),
-                          const Text(
-                            'Rp 674.663',
-                            style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+                          ValueListenableBuilder<int>(
+                            valueListenable: tabunganNotifier,
+                            builder: (context, val, child) => Text(
+                              formatRp(val),
+                              style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           const SizedBox(height: 2),
                           const Text(

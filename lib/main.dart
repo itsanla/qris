@@ -4,6 +4,7 @@ import 'screens/home_screen.dart';
 import 'screens/transfer_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/qris_scanner_screen.dart';
+import 'screens/deposit_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,6 +74,10 @@ class _MainScreenState extends State<MainScreen> {
         onTap: (i) {
           if (i == 2) {
             Navigator.push(context, MaterialPageRoute(builder: (_) => const QrisScannerScreen()));
+            return;
+          }
+          if (i == 3) {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => const DepositScreen()));
             return;
           }
           setState(() => _currentIndex = i);

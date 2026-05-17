@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../main.dart';
+import '../state/balance_store.dart';
 import 'qris_scanner_screen.dart';
 import 'qris_confirm_screen.dart';
 
@@ -209,9 +210,12 @@ class _QrisAmountScreenState extends State<QrisAmountScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Saldo Tersedia: Rp 669.710',
-                  style: TextStyle(color: kTextGray, fontSize: 12),
+                ValueListenableBuilder<int>(
+                  valueListenable: tabunganNotifier,
+                  builder: (context, val, child) => Text(
+                    'Saldo Tersedia: ${formatRp(val)}',
+                    style: const TextStyle(color: kTextGray, fontSize: 12),
+                  ),
                 ),
                 const SizedBox(height: 4),
                 GestureDetector(
