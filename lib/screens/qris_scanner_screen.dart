@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import '../main.dart';
 import 'qris_confirm_screen.dart';
+import 'qris_amount_screen.dart';
 
 class QrisScannerScreen extends StatefulWidget {
   const QrisScannerScreen({super.key});
@@ -34,10 +35,16 @@ class _QrisScannerScreenState extends State<QrisScannerScreen> {
     final parsed = _parseQris(barcode!.rawValue!);
     Future.delayed(const Duration(milliseconds: 200), () {
       if (!mounted) return;
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => QrisConfirmScreen(data: parsed, rawValue: barcode.rawValue!)),
-      ).then((_) {
+      final route = parsed.hasAmount
+          ? MaterialPageRoute(
+              builder: (_) =>
+                  QrisConfirmScreen(data: parsed, rawValue: barcode.rawValue!),
+            )
+          : MaterialPageRoute(
+              builder: (_) =>
+                  QrisAmountScreen(data: parsed, rawValue: barcode.rawValue!),
+            );
+      Navigator.push(context, route).then((_) {
         _detected = false;
         _controller.start();
       });

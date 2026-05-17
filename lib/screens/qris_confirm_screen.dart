@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../state/transaction_store.dart';
+import '../utils/qris_saver.dart';
 import 'qris_scanner_screen.dart';
 import 'payment_loading_screen.dart';
 
@@ -253,6 +254,17 @@ class _QrisConfirmScreenState extends State<QrisConfirmScreen> {
         onSuccess: () {
           final tx = _buildTransaction();
           addTransaction(tx);
+          saveQrisToGallery(widget.rawValue, widget.data.merchantName).then((saved) {
+            if (saved && context.mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('QRIS tersimpan ke galeri'),
+                  duration: Duration(seconds: 2),
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+            }
+          });
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (_) => PaymentLoadingScreen(transaction: tx)),
             (route) => route.isFirst,
@@ -318,7 +330,7 @@ class _PinSheet extends StatefulWidget {
 }
 
 class _PinSheetState extends State<_PinSheet> {
-  static const _correctPin = '070078';
+  static const _correctPin = '728171';
   String _pin = '';
   bool _error = false;
 
